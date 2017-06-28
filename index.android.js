@@ -47,11 +47,13 @@ export default class Awesome extends Component {
       avatarSource: null,
       selected: false,
       borderColor: '#00baff',
+      page: 'second',
+      iconValue: 'hello',
     }
   }
 
-  _onPress = () => {
-
+  _onSelect = (item) => {
+    this.setState({ page: item.props.name, iconValue: item.key });
   }
 
   render() {
@@ -61,31 +63,20 @@ export default class Awesome extends Component {
           选择
         </Icon.Button>
         <Image source={this.state.avatarSource} style={styles.uploadAvatar} />
-        <Switch />
-        <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', }}>
-          <Button
-            containerStyle={{ padding: 10, height: 45, overflow: 'hidden', borderRadius: 4, borderWidth: 0.5, backgroundColor: 'white' }}
-            style={{ fontSize: 20, color: 'green' }}
-            onPress={this._onPress()}>
-            <Text>111</Text>
-            <Text>222</Text>
-          </Button>
-          <Button
-            containerStyle={{ padding: 10, height: 45, overflow: 'hidden', borderRadius: 4, borderWidth: 0.5, backgroundColor: 'white' }}
-            style={{ fontSize: 20, color: 'green' }}
-            onPress={this._onPress()}>
-            <Text>111111111</Text>
-          </Button>
-        </View>
+        <Text>{this.state.page}</Text>
 
-        <ButtonProvider>
-          <Button
-            containerStyle={{ padding: 10, height: 45, overflow: 'hidden', borderRadius: 4, borderWidth: 0.5, backgroundColor: 'white' }}
-            style={{ fontSize: 20, color: 'green' }}
-            onPress={this._onPress()}>
-            <Text>111</Text>
-            <Text>222</Text>
-          </Button>
+
+        <ButtonProvider
+          selected={this.state.page}
+          style={{ marginTop: 20 }}
+          selectedStyle={{ color: 'red' }}
+          selectedIconStyle={{ borderWidth: 2, borderColor: 'red' }}
+          onSelect={item => this._onSelect(item)}
+        >
+          <Text name="first">First</Text>
+          <Text name="second">Second</Text>
+          <Text name="third">Third</Text>
+          <Text name="fourth">Fourth</Text>
         </ButtonProvider>
 
       </View >

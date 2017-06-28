@@ -1,34 +1,59 @@
 //import liraries
 import React, { Component, PropTypes, Children } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 
 // create a component
 export default class ButtonProvider extends Component {
-  static propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
-    children: PropTypes.element.isRequired,
-  };
-  render() {
-    return React.Children.only(this.props.children);
+
+  onSelect(el) {
+    if (el.props.onSelect) {
+      el.props.onSelect(el);
+    } else if (this.props.onSelect) {
+      this.props.onSelect(el);
+    }
   }
-
-  sumButtons() {
-    Children.forEach(children, (child, index) => {
-      if (!React.isValidElement(child)) {
-
-        return;
-      }
-
-    });
+  render() {
+    const self = this;
+    let selected = this.props.selected
+    if (!selected) {
+      React.Children.forEach(this.props.children.filter(c => c), el => {
+        if (!selected || el.props.initial) {
+          selected = el.props.name || el.key;
+        }
+      });
+    }
+    return (
+      <View style={[styles.tabbarView, this.props.style]}>
+        {React.Children.map(this.props.children.filter(c => c), (el) =>
+          <TouchableOpacity key={el.props.name + "touch"}
+            style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {}]}
+            onPress={() => !self.props.locked && self.onSelect(el)}
+            onLongPress={() => self.onSelect(el)}
+            activeOpacity={el.props.pressOpacity}>
+            {selected == (el.props.name || el.key) ? React.cloneElement(el, { selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle] }) : el}
+          </TouchableOpacity>
+        )}
+      </View>
+    );
   }
 }
 
 // define your styles
 const styles = StyleSheet.create({
-  container: {
+  tabbarView: {
+    height: 50,
+    opacity: 1,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  iconView: {
     flex: 1,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
-  },
+    margin: 8,
+    borderWidth: 2,
+  }
 });
