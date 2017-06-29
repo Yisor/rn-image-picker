@@ -22,6 +22,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Switch } from './Switch';
 import Button from './Button';
 import ButtonProvider from './ButtonProvider';
+import ImageButton from './ImageButton';
+const btnNormal = require('./images/btn_bg_normal.png');
+const btnSelect = require('./images/btn_bg_selected.png');
 
 const options = {
   quality: 0.8,
@@ -79,6 +82,16 @@ export default class Awesome extends Component {
           <Text name="fourth">Fourth</Text>
         </ButtonProvider>
 
+        <ImageButton
+          selected={true}
+          selectedStyle={{ color: 'red' }}
+          onSelect={item => { console.log('点击了') }}
+          sourceNormal={btnNormal}
+          sourceSelected={btnSelect}
+          text={'测试'}
+        >
+
+        </ImageButton>
       </View >
     )
   }
