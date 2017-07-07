@@ -1,7 +1,26 @@
 import React, { PureComponent, PropTypes, Children } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  ViewPropTypes,
+  TouchableOpacity,
+} from 'react-native';
 
-export default class ButtonProvider extends PureComponent {
+export default class ImageButtonProvider extends PureComponent {
+
+  static propTypes = {
+    ...TouchableOpacity.propTypes,
+    style: View.propTypes.style,
+    selected: PropTypes.any,
+    textStyle: Text.propTypes.style,
+    selectedTextStyle: Text.propTypes.style,
+    image: PropTypes.number.isRequired,
+    selectedImage: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    onSelect: PropTypes.func,
+  };
 
   onSelect(el) {
     if (el.props.onSelect) {
@@ -25,11 +44,13 @@ export default class ButtonProvider extends PureComponent {
       <View style={[styles.tabbarView, this.props.style]}>
         {React.Children.map(this.props.children.filter(c => c), (el) =>
           <TouchableOpacity key={el.props.name + "touch"}
-            style={[styles.iconView, this.props.iconStyle, (el.props.name || el.key) == selected ? this.props.selectedIconStyle || el.props.selectedIconStyle || {} : {}]}
+            style={[styles.iconView]}
             onPress={() => !self.props.locked && self.onSelect(el)}
-            onLongPress={() => self.onSelect(el)}
-            activeOpacity={el.props.pressOpacity}>
-            {selected == (el.props.name || el.key) ? React.cloneElement(el, { selected: true, style: [el.props.style, this.props.selectedStyle, el.props.selectedStyle] }) : el}
+            onLongPress={() => self.onSelect(el)}>
+          
+              {selected == (el.props.name || el.key) ? React.cloneElement(el, { selected: true, style: [el.props.style, this.props.selectedTextStyle, el.props.selectedTextStyle] }) : el}
+           
+
           </TouchableOpacity>
         )}
       </View>
@@ -37,7 +58,6 @@ export default class ButtonProvider extends PureComponent {
   }
 }
 
-// define your styles
 const styles = StyleSheet.create({
   tabbarView: {
     height: 50,
@@ -49,11 +69,20 @@ const styles = StyleSheet.create({
   },
   iconView: {
     flex: 1,
-    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'blue',
-    margin: 8,
-    borderWidth: 2,
-  }
+    backgroundColor: 'gray',
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'contain',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
 });
+

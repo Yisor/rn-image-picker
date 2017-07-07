@@ -12,7 +12,8 @@
 		"react-native-image-picker": "^0.26.3",
 		"react-native-switch-pro": "^0.4.2",
 		"react-native-tabs": "^1.0.9",
-		"react-native-vector-icons": "^4.2.0"
+		"react-native-vector-icons": "^4.2.0",
+		"react-navigation": "^1.0.0-beta.11"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",

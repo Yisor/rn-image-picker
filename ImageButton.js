@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
   View,
   Image,
@@ -11,18 +11,19 @@ import {
 export default class ImageButton extends PureComponent {
   static propTypes = {
     ...TouchableOpacity.propTypes,
-    containerStyle: View.propTypes.style,
+    style: View.propTypes.style,
     selected: PropTypes.bool,
-    style: Text.propTypes.style,
-    styleSelected: Text.propTypes.style,
-    sourceNormal: PropTypes.string,
-    sourceSelected: PropTypes.string,
-    text: PropTypes.string,
+    textStyle: Text.propTypes.style,
+    selectedTextStyle: Text.propTypes.style,
+    image: PropTypes.number.isRequired,
+    selectedImage: PropTypes.number.isRequired,
+    title: PropTypes.string,
     onSelect: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   _onSelect = (el) => {
-    if (this.props.onSelect) this.props.onSelect(e1);
+    if (!this.props.disabled && this.props.onSelect) this.props.onSelect(el);
   }
 
   render() {
@@ -30,14 +31,13 @@ export default class ImageButton extends PureComponent {
     let selected = this.props.selected
     return (
       <TouchableOpacity
-        {...touchableProps}
         testID={this.props.testID}
-        style={this.props.containerStyle}
-        onPress={() => self._onSelect(e1)}
+        style={[styles.container, this.props.style]}
+        onPress={(el) => self._onSelect(el)}
         accessibilityTraits="button"
         accessibilityComponentType="button">
-        <Image style={[styles.image]} source={selected ? this.props.sourceNormal : this.props.sourceNormal}>
-          <Text style={[styles.text, selected ? this.props.styleSelected : this.props.style]}>{this.props.text}</Text>
+        <Image style={styles.image} source={selected ? this.props.selectedImage : this.props.image}>
+          <Text style={[styles.text, selected ? this.props.selectedTextStyle : this.props.textStyle || {}]}>{this.props.title}</Text>
         </Image>
       </TouchableOpacity>
     );
@@ -49,19 +49,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: 'gray',
   },
   image: {
+    height: 50,
+    width:80,
     resizeMode: 'contain',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
-    color: '#007aff',
-    fontSize: 17,
-    fontWeight: '500',
+    fontSize: 16,
     textAlign: 'center',
+    alignItems: 'center',
   },
 });
 
