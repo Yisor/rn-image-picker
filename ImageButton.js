@@ -1,3 +1,9 @@
+/*
+ *  @File   : ImageButton
+ *  @Author : lslin
+ *  @Date   : 2017-7-5 15:55:9
+ *  @Last Modified   : 2017-7-5 15:55:9
+ */
 import React, { PureComponent, PropTypes } from 'react';
 import {
   View,

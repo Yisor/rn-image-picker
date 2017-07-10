@@ -1,10 +1,10 @@
-/**
- * @Author: will
- * @Date:   2017-05-31T09:02:47+08:00
- * @Filename: Tabs.js
- * @Last modified by:   will
- * @Last modified time: 2017-06-15T15:25:11+08:00
+/*
+ *  @File   : BasicTabs
+ *  @Author : lslin
+ *  @Date   : 2017-7-5 15:48:57
+ *  @Last Modified   : 2017-7-5 15:48:57
  */
+
 
 import React from 'react';
 import { TabNavigator } from 'react-navigation';
@@ -18,7 +18,7 @@ import SecondPage from './SecondPage';
 const btnNormal = require('./images/btn_bg_normal.png');
 const btnSelect = require('./images/btn_bg_selected.png');
 
-const Tabs = TabNavigator(
+const BasicTabs = TabNavigator(
   {
     MainPage: {
       screen: MainPage,
@@ -32,6 +32,7 @@ const Tabs = TabNavigator(
       navigationOptions: ({ navigation }) => {
         return {
           ...TabOptions(navigation, btnNormal, btnSelect, '通讯录', '通讯录'),
+          header: null,
         };
       },
     },
@@ -63,4 +64,4 @@ const Tabs = TabNavigator(
     backBehavior: 'none',
   });
 
-export default Tabs;
+export default BasicTabs;

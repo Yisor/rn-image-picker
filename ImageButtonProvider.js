@@ -1,3 +1,9 @@
+/*
+ *  @File   : ImageButtonProvider
+ *  @Author : lslin
+ *  @Date   : 2017-7-5 15:55:22
+ *  @Last Modified   : 2017-7-5 15:55:22
+ */
 import React, { PureComponent, PropTypes, Children } from 'react';
 import {
   View,

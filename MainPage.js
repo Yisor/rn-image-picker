@@ -1,3 +1,9 @@
+/*
+ *  @File   : MainPage
+ *  @Author : lslin
+ *  @Date   : 2017-7-5 15:55:39
+ *  @Last Modified   : 2017-7-5 15:55:39
+ */
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 

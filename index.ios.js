@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-export default class Awesome extends Component {
+export default class Awesome extends PureComponent {
   render() {
     return (
       <View style={styles.container}>

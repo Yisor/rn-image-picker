@@ -1,3 +1,9 @@
+/*
+ *  @File   : ButtonProvider
+ *  @Author : lslin
+ *  @Date   : 2017-7-5 15:51:30
+ *  @Last Modified   : 2017-7-5 15:51:30
+ */
 import React, { PureComponent, PropTypes, Children } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 
@@ -37,7 +43,6 @@ export default class ButtonProvider extends PureComponent {
   }
 }
 
-// define your styles
 const styles = StyleSheet.create({
   tabbarView: {
     height: 50,

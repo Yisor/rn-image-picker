@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,7 +11,7 @@ import coalesceNonElementChildren from './coalesceNonElementChildren';
 
 const systemButtonOpacity = 0.2;
 
-export default class Button extends Component {
+export default class Button extends PureComponent {
   static propTypes = {
     ...TouchableOpacity.propTypes,
     allowFontScaling: Text.propTypes.allowFontScaling,

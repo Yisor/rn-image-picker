@@ -1,9 +1,9 @@
-//import liraries
-import React, { Component } from 'react';
+// import liraries
+import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 // create a component
-export default class SecondPage extends Component {
+export default class SecondPage extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
